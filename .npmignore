@@ -1,0 +1,18 @@
+# Save storage space by ignoring all files related to development.
+
+# will be installed automatically
+node_modules/
+
+dev/
+scripts/
+src/
+docs/
+
+.editorconfig
+.gitignore
+
+*config.json
+*config.js
+
+
+

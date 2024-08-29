@@ -1,0 +1,58 @@
+{
+	"name": "viewstat",
+	"version": "1.0.0",
+	"description": "Get information about your screen and viewport.",
+	"keywords": [
+		"javascript",
+		"info",
+		"library",
+		"compatibility",
+		"screen",
+		"viewport",
+		"refresh-rate",
+		"layout-viewport",
+		"media-queries",
+		"polyfills",
+		"matchmedia",
+		"requestanimationframe"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "solarunes",
+		"email": "solarunes@protonmail.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./build/viewstat.d.ts",
+		"import": "./build/viewstat.module.min.js",
+		"require": "./build/viewstat.min.js"
+	},
+	"scripts": {
+		"build": "npm run build:notypes && npm run build:types",
+		"build:notypes": "npm run cleanup && node scripts/build.js",
+		"build:types": "bash scripts/build-types.sh",
+		"cleanup": "node scripts/cleanup.js && sort-package-json package.json",
+		"dev": "npm run cleanup && node scripts/dev.js",
+		"docs:build": "npx jsdoc src -c jsdoc.config.json",
+		"docs:serve": "http-server ./docs/ -os -p 5000",
+		"lint": "eslint -c eslint.config.js .",
+		"lint:fix": "npm run lint -- --fix",
+		"test": "npm run build:notypes && http-server -o /tests/ -sp 5500"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.24.8",
+		"@babel/core": "^7.25.2",
+		"@babel/preset-env": "^7.25.4",
+		"docdash": "^2.0.2",
+		"dts-bundle-generator": "^9.5.1",
+		"esbuild": "^0.23.1",
+		"esbuild-plugin-umd-wrapper": "^3.0.0",
+		"eslint": "^9.9.0",
+		"eslint-config-solarunes": "^1.0.0",
+		"http-server": "^14.1.1",
+		"jsdoc": "^4.0.3",
+		"jsdoc2flow": "^0.13.2",
+		"open": "^10.1.0",
+		"sort-package-json": "^2.10.1"
+	}
+}
