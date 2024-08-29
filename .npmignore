@@ -7,12 +7,10 @@ dev/
 scripts/
 src/
 docs/
+tests/
 
 .editorconfig
 .gitignore
 
 *config.json
 *config.js
-
-
-

@@ -21,6 +21,14 @@
 		"name": "solarunes",
 		"email": "solarunes@protonmail.com"
 	},
+	"repository": {
+		"url": "https://github.com/solarunes/viewstat",
+		"type": "git"
+	},
+	"homepage": "https://solarunes.github.io/projects/viewstat",
+	"bugs": {
+		"url": "https://github.com/solarunes/viewstat#issues"
+	},
 	"type": "module",
 	"exports": {
 		"types": "./build/viewstat.d.ts",
@@ -37,7 +45,8 @@
 		"docs:serve": "http-server ./docs/ -os -p 5000",
 		"lint": "eslint -c eslint.config.js .",
 		"lint:fix": "npm run lint -- --fix",
-		"test": "npm run build:notypes && http-server -o /tests/ -sp 5500"
+		"test": "npm run build:notypes && http-server -o /tests/ -sp 5500",
+		"preversion": "npm run build"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.24.8",
