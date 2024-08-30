@@ -14,9 +14,15 @@ This implementation does not currently support events.
  */
 
 
-import { media } from "..";
+
+
+
 import { logger } from "../log";
 import { defineGetter } from "../utils";
+import { isInitialized } from "../compat";
+
+
+
 
 
 // Hash to prevent outside use of the MediaQueryListPolyfill constructor.
@@ -97,6 +103,8 @@ function _mediaTestNodeHasChanged( node ) {
  */
 export function MediaQueryListPolyfill() {
 
+	if ( !isInitialized() ) return null;
+
 	if ( arguments[ 0 ] !== _key ) throw new TypeError( "[viewstat] Illegal constructor" );
 
 	const _media = arguments[ 1 ];
@@ -125,6 +133,22 @@ export function MediaQueryListPolyfill() {
  */
 function matchMedia( rule ) {
 
+	if ( !isInitialized() ) return null;
+
+	// IE9
+	if ( window.media || window.styleMedia ) {
+
+		const media_alias = window.media || window.styleMedia;
+
+		rule = rule || "only all";
+
+		return {
+			matches: media_alias.matchMedium( rule ),
+			media: rule
+		}
+
+	}
+
 	const node = _createMediaTestNode( rule );
 
 	_addMediaTestNode( node );
@@ -144,23 +168,6 @@ function matchMedia( rule ) {
 }
 
 
-// IE9
-if ( window.media || window.styleMedia ) {
-
-	const media_alias = window.media || window.styleMedia;
-
-	matchMedia = function ( rule ) {
-
-		rule = rule || "only all";
-
-		return {
-			matches: media_alias.matchMedium( rule ),
-			media: rule
-		}
-
-	}
-
-}
 
 
 

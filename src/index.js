@@ -22,7 +22,7 @@ export const AUTHOR = __AUTHOR__;
  */
 export const LICENSE = __LICENSE__;
 
-export { getCompatInfo } from "./compat";
+export { getCompatInfo, isInitialized, init } from "./compat";
 export { setSilent } from "./log";
 
 export * as polyfills from "./polyfills";

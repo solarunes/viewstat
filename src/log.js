@@ -25,7 +25,7 @@ export function setSilent( bool ) {
 
 function log() {
 
-	if ( window.console && window.console.warn && !SILENT ) {
+	if ( typeof console !== "undefined" && console.warn && !SILENT ) {
 
 		const msg_arr = label.concat( array_from( arguments ) );
 
@@ -38,7 +38,7 @@ function log() {
 
 function warn() {
 
-	if ( window.console && window.console.warn && !SILENT ) {
+	if ( typeof console !== "undefined" && console.warn && !SILENT ) {
 
 		const msg_arr = label.concat( array_from( arguments ) );
 
@@ -50,7 +50,7 @@ function warn() {
 
 function error() {
 
-	if ( window.console && window.console.error && !SILENT ) {
+	if ( typeof console !== "undefined" && console.error && !SILENT ) {
 
 		const msg_arr = label.concat( array_from( arguments ) );
 

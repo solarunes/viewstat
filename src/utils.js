@@ -50,7 +50,7 @@ export function floorTo( value, decimals ) {
  */
 export function defineGetter( obj, name, fn ) {
 
-	if ( window.Object && Object.defineProperty ) {
+	if ( Object.defineProperty ) {
 
 		Object.defineProperty( obj, name, {
 

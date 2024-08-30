@@ -1,4 +1,4 @@
-import { compat_matchMedia as matchMedia } from "../compat";
+import { isInitialized, compat_matchMedia as matchMedia } from "../compat";
 
 import { supportsMediaFeature } from "../media/support-tests";
 import { mediaQueryBinarySearch, mediaQueryLinearSearch } from "../media/tools";
@@ -22,6 +22,8 @@ import { defineGetter } from "../utils";
  */
 function colorBitDepth() {
 
+	if ( !isInitialized() ) return 0;
+
 	if ( supportsMediaFeature( "color" ) ) {
 
 		return mediaQueryLinearSearch( "color", "", 8 );
@@ -44,6 +46,8 @@ function colorBitDepth() {
  */
 function colorDepth() {
 
+	if ( !isInitialized() ) return 0;
+
 	if ( window.screen && window.screen.colorDepth ) {
 
 		return screen.colorDepth;
@@ -62,6 +66,8 @@ function colorDepth() {
  */
 function colorRange() {
 
+	if ( !isInitialized() ) return 0;
+
 	if ( supportsMediaFeature( "color-index" ) && matchMedia( "(min-color-index: 1)" ).matches ) {
 
 		return mediaQueryBinarySearch( "color-index", "", 1, 2 ** 24 );
@@ -79,6 +85,8 @@ function colorRange() {
  * @returns {("sRGB" | "p3" | "rec2020")}
  */
 function colorSpace() {
+
+	if ( !isInitialized() ) return "";
 
 	if ( supportsMediaFeature( "color-gamut" ) ) {
 
@@ -105,6 +113,8 @@ function colorSpace() {
  * @returns {boolean}
  */
 function isTerminal() {
+
+	if ( !isInitialized() ) return null;
 
 	if ( !supportsMediaFeature( "grid" ) ) return false;
 

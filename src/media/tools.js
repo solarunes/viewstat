@@ -1,5 +1,5 @@
 import { supportsMediaFeature, supportsRangedMediaUnit } from "./support-tests";
-import { compat_matchMedia as matchMedia } from "../compat";
+import { isInitialized, compat_matchMedia as matchMedia } from "../compat";
 
 import { roundTo } from "../utils";
 import { logger } from "../log";
@@ -82,6 +82,8 @@ export function mediaQueryLinearSearch( rule, unit, startValue ) {
  * @returns {number}
  */
 export function mediaQueryBinarySearch( rule, unit, precision, startValue ) {
+
+	if ( !isInitialized() ) return 0;
 
 	const matchValue = _createMatchFn( rule, unit );
 

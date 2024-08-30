@@ -1,3 +1,4 @@
+import { isInitialized } from "../compat";
 import { supportsMediaFeature } from "../media/support-tests";
 import { mediaQueryBinarySearch } from "../media/tools";
 
@@ -19,6 +20,8 @@ import { roundTo, defineGetter } from "../utils";
  */
 function width() {
 
+	if ( !isInitialized() ) return 0;
+
 	if ( supportsMediaFeature( "width" ) ) {
 
 		return roundTo(
@@ -37,6 +40,8 @@ function width() {
  * @returns {number}
  */
 function height() {
+
+	if ( !isInitialized() ) return 0;
 
 	if ( supportsMediaFeature( "height" ) ) {
 
@@ -80,6 +85,8 @@ function offsetY() {
  * @returns {number}
  */
 function devicePixelRatio() {
+
+	if ( !isInitialized() ) return 0;
 
 	let windowDevicePixelRatio = 0;
 

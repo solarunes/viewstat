@@ -19,6 +19,7 @@ To improve performance, the animation loop has to be started manually.
 
 
 
+import { isInitialized } from "../compat";
 import { logger } from "../log";
 
 
@@ -96,7 +97,7 @@ function _runRequests() {
  */
 export function startAnimationFrameRuntime() {
 
-	if ( intervalID ) return;
+	if ( intervalID || !isInitialized() ) return;
 
 	intervalID = setInterval( _runRequests, 1000 / 60 );
 

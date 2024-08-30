@@ -1,6 +1,7 @@
 import { matchMedia as matchMediaPolyfill } from "./polyfills/matchMedia";
 
 import { logger } from "./log";
+import { array_from_arguments } from "./utils";
 
 
 
@@ -11,11 +12,81 @@ const compatinfo = {};
 
 
 
+
+
+// Determinse whether the library still needs to be initialized.
+// This can be useful if the javascript is prepared server-side.
+let INIT = false;
+
+
+
+function _isBrowser() {
+
+	return typeof window !== "undefined" && window.document;
+
+}
+
+
+
+/**
+ * Returns true if the library has been initialized and is ready to use.
+ * @returns {boolean}
+ */
+export function isInitialized() {
+
+	return INIT;
+
+}
+
+
+/**
+ * Tries to initialize the library. Will be done automatically in a browser environment.
+ * This can be useful if you're processing JavaScript on the server side.
+ */
+export function init() {
+
+	if ( !_isBrowser() ) {
+
+		logger.error( "Cannot initialize in a non-browser environment." );
+
+		return;
+
+	}
+
+	if ( !INIT ) {
+
+		INIT = true;
+
+		// load compatibility data
+		getRequestAnimationFrame();
+		getMatchMedia();
+
+		return;
+
+	}
+
+	logger.warn( "Library has already been initialized." );
+
+}
+
+
+if ( _isBrowser() ) {
+
+	init();
+
+}
+
+
+
+
+
+
 /**
  * @interface CompatibilitySpecifier
  * @property {string} name The name of the built-in. Includes prefixes and polyfills.
  * @property {boolean} supported True if the feature is supported by the browser, false if not.
  */
+/* eslint-disable-next-line */
 const CompatibilitySpecifier = {}; // dummy to prevent typescript from throwing an error
 
 /**
@@ -87,7 +158,7 @@ export function setCompatInfo( entry, supported, name ) {
 // Template for throwing a type error if a feature is lacking browser support.
 function _throwUnsupported( name ) {
 
-	logger.error( name + "\" is not supported on this device." );
+	logger.error( "\"" + name + "\" is not supported on this device." );
 
 }
 
@@ -176,9 +247,6 @@ function _getCancelAnimationFrame() {
 
 
 
-export const compat_requestAnimationFrame = getRequestAnimationFrame();
-
-
 
 
 
@@ -217,4 +285,20 @@ function getMatchMedia() {
 }
 
 
-export const compat_matchMedia = getMatchMedia();
+
+
+export const compat_requestAnimationFrame = function _compat_requestAnimationFrame() {
+
+	if ( INIT ) return getRequestAnimationFrame().apply( this, array_from_arguments( arguments ) );
+
+	throw new SyntaxError( "[viewstat] Library still needs to be initialized." );
+
+};
+
+export const compat_matchMedia = function _compat_matchMedia() {
+
+	if ( INIT ) return getMatchMedia().apply( this, array_from_arguments( arguments ) );
+
+	throw new SyntaxError( "[viewstat] Library still needs to be initialized." );
+
+};

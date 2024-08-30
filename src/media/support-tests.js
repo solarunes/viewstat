@@ -1,4 +1,4 @@
-import { compat_matchMedia as matchMedia } from "../compat";
+import { isInitialized, compat_matchMedia as matchMedia } from "../compat";
 
 
 
@@ -17,6 +17,8 @@ import { compat_matchMedia as matchMedia } from "../compat";
  */
 export function supportsMediaQueries() {
 
+	if ( !isInitialized() ) return false;
+
 	return matchMedia( "only all" ).matches;
 
 }
@@ -32,6 +34,8 @@ export function supportsMediaQueries() {
  * console.log(viewstat.media.supportsMediaFeature("resolution"));
  */
 export function supportsMediaFeature( rule ) {
+
+	if ( !isInitialized() ) return false;
 
 	rule = String( rule );
 
@@ -59,6 +63,8 @@ export function supportsMediaFeature( rule ) {
  * console.log(supports_resolution_in_dppx);
  */
 export function supportsRangedMediaUnit( rule, unit ) {
+
+	if ( !isInitialized() ) return false;
 
 	rule = String( rule );
 	unit = String( unit );
