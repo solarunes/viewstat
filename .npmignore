@@ -3,6 +3,8 @@
 # will be installed automatically
 node_modules/
 
+
+.github/
 dev/
 scripts/
 src/
