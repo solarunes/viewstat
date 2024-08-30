@@ -1,3 +1,8 @@
+#### v1.1.1
+
+ - Fixed typos.
+ - Moved contribution guidelines from README to a separate file.
+
 ### v1.1.0
 
  - Added initialisation system:
