@@ -14,8 +14,7 @@ const compatinfo = {};
 
 
 
-// Determinse whether the library still needs to be initialized.
-// This can be useful if the javascript is prepared server-side.
+// Determines if the library still needs to be initialized.
 let INIT = false;
 
 
@@ -37,6 +36,7 @@ export function isInitialized() {
 	return INIT;
 
 }
+
 
 
 /**
@@ -68,6 +68,7 @@ export function init() {
 	logger.warn( "Library has already been initialized." );
 
 }
+
 
 
 if ( _isBrowser() ) {
