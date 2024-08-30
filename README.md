@@ -51,7 +51,7 @@ Types and UMD exports are also available.
 Although not recommended, the library can also be loaded directly into a web page via a CDN link:
 
 ```html
-<script type="text/javascript" src="https://unpkg.com/viewstat@latest/build/viewstat.umd.min.js" defer></script>
+<script type="text/javascript" src="https://unpkg.com/viewstat@latest/build/viewstat.umd.min.cjs" defer></script>
 ```
 **Note that this library must be loaded after the body element.**
 

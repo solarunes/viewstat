@@ -76,5 +76,5 @@ const es5_source = babel.transformSync(
 // This is done to prevent Babel from polluting the global scope with automatically generated polyfills.
 const iife_wrapper = `${BANNER}\n(function() {${es5_source}})();`;
 
-fs.writeFileSync( "./build/viewstat.umd.min.js", iife_wrapper );
+fs.writeFileSync( "./build/viewstat.umd.min.cjs", iife_wrapper );
 

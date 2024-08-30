@@ -1,6 +1,6 @@
 {
 	"name": "viewstat",
-	"version": "1.0.0-1",
+	"version": "1.0.0-2",
 	"description": "Get information about your screen and viewport.",
 	"keywords": [
 		"javascript",
@@ -16,24 +16,24 @@
 		"matchmedia",
 		"requestanimationframe"
 	],
+	"homepage": "https://solarunes.github.io/projects/viewstat",
+	"bugs": {
+		"url": "https://github.com/solarunes/viewstat#issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/solarunes/viewstat"
+	},
 	"license": "MIT",
 	"author": {
 		"name": "solarunes",
 		"email": "solarunes@protonmail.com"
 	},
-	"repository": {
-		"url": "https://github.com/solarunes/viewstat",
-		"type": "git"
-	},
-	"homepage": "https://solarunes.github.io/projects/viewstat",
-	"bugs": {
-		"url": "https://github.com/solarunes/viewstat#issues"
-	},
 	"type": "module",
 	"exports": {
 		"types": "./build/viewstat.d.ts",
 		"import": "./build/viewstat.module.min.js",
-		"require": "./build/viewstat.min.js"
+		"require": "./build/viewstat.umd.min.cjs"
 	},
 	"scripts": {
 		"build": "npm run build:notypes && npm run build:types",
