@@ -46,7 +46,7 @@
 		"lint": "eslint -c eslint.config.js .",
 		"lint:fix": "npm run lint -- --fix",
 		"test": "npm run build:notypes && http-server -o /tests/ -sp 5500",
-		"preversion": "npm run build"
+		"postversion": "npm run build"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.24.8",
