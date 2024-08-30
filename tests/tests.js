@@ -7,6 +7,14 @@ Fully automated cross-browser testing might be implemented in the future, if tim
 
 
 
+var native_raf = 0;
+
+if ( typeof window.requestAnimationFrame === "function" ) {
+
+	native_raf = requestAnimationFrame;
+
+}
+
 // disable built-ins to make sure that compat detection is working
 window.matchMedia = undefined;
 window.requestAnimationFrame = undefined;
@@ -75,6 +83,7 @@ function compat() {
 
 	var mediaCompat = viewstat.getCompatInfo( "matchMedia" );
 	var rafCompat = viewstat.getCompatInfo( "requestAnimationFrame" );
+
 	var empty = viewstat.getCompatInfo( "" );
 
 	if ( mediaCompat.supported && !mediaCompat.name || !mediaCompat.supported && mediaCompat.name ) throw "Compatibility data for matchMedia is incorrect.";
@@ -218,25 +227,45 @@ function screenUpdate() {
 
 	var s = viewstat.screen;
 
-	s.getRefreshRateCallback( function ( Hz ) {
+	try {
 
-		assert( function () {
+		window.requestAnimationFrame = native_raf;
 
-			return isNumber( Hz ) && Hz !== 0;
+		s.getRefreshRateCallback( function ( Hz ) {
 
-		}, "Screen refresh rate has been determined correctly." );
+			assert( function () {
 
-	} );
+				return isNumber( Hz ) && Hz !== 0;
 
-	s.analyzeRefreshRateAccuracyCallback( function ( data ) {
+			}, "Screen refresh rate has been determined correctly." );
 
-		assert( function () {
+		} );
 
-			return Array.isArray( data );
+	} catch ( error ) {
 
-		}, "Data about screen updates has been collected." );
+		if ( native_raf !== 0 ) throw "getRefreshRate throwing error although rAF support is there: " + error;
 
-	} );
+	}
+
+	try {
+
+		window.requestAnimationFrame = native_raf;
+
+		s.analyzeRefreshRateAccuracyCallback( function ( data ) {
+
+			assert( function () {
+
+				return Array.isArray( data );
+
+			}, "Data about screen updates has been collected." );
+
+		} );
+
+	} catch ( error ) {
+
+		if ( native_raf !== 0 ) throw "analyzeRefreshRateAccuracy throwing error although rAF support is there: " + error;
+
+	}
 
 	return true;
 
