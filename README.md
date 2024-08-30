@@ -39,12 +39,6 @@ import * as viewstat from "viewstat";
 
 console.log(viewstat.VERSION);
 ```
-```js
-// import individual modules
-import { screen } from "viewstat";
-
-console.log(screen.layoutViewport.width);
-```
 
 Types and UMD exports are also available.
 
@@ -55,7 +49,7 @@ Although not recommended, the library can also be loaded directly into a web pag
 ```
 **Note that this library must be loaded after the body element.**
 
-# Example
+# Examples
 
 Get the current screen's refresh rate:
 ```js
@@ -84,8 +78,8 @@ const { name, supported } = getCompatInfo("requestAnimationFrame");
 
 # Documentation
 
-Documentation is available [here](https://solarunes.github.io).
-Alternatively, it can also be built from source.
+Documentation is available [here](https://solarunes.github.io/projects/viewstat).
+Alternatively, it can be built directly from source.
 
 
 
@@ -108,33 +102,5 @@ Run a local development server. This will provide a local build in the <code>dev
 npm run dev
 ```
 
-## Build
-Create a quick build without type declarations becuase TSC is egregiously slow. Run without the prefix to create a full build.
-```sh
-npm run build:notypes
-```
-
-## Linting & Testing
-Apply code formatting (ESLint rules are available [here](https://github.com/solarunes/eslint-config-solarunes)):
-```sh
-npm run lint:fix
-```
-
-Run tests in the browser (subject to improvement):
-```sh
-npm test
-```
-
-### Testing in legacy browsers
-Recommended strategy:
-1. Copy the UMD bundle from the build folder into the <code>test.html</code> file.
-2. Create a temporary domain for the webpage, using for example TiinyHost or GitHub Pages.
-3. Set up a virtual machine containing the legacy operating system and browser.
-4. Open the webpage in the virtual machine, check for error messages and unexpected behavior.
-
-## Create Docs
-Build and serve documentation directly from source:
-```sh
-npm run docs:build
-npm run docs:serve
-```
+## Further reading
+More information and contributing guidelines are available on [GitHub](https://github.com/solarunes/viewstat)
