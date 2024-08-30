@@ -15,8 +15,6 @@
  - Added <code>viewstat.isInitialized()</code>:
 	- Determines if the library has been initialized yet. This can be run outside the browser.
 
---------------------------
-
  - Fixed <code>viewstat.screen.getRefreshRate()</code> and <code>viewstat.screen.analyzeRefreshRateAccuracy()</code> test cases.
 
  - Fixed broken commonjs (<code>require</code>) import path.
