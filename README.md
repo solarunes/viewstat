@@ -1,9 +1,5 @@
-<center>
-
-<h1>viewstat.js</h1>
-<h3>Viewport Information &#8212; CSS Media Query Tools &#8212; Polyfills</h3>
-
-</center>
+<h1 align=center>viewstat.js</h1>
+<h3 align=center>Viewport Information &#8212; CSS Media Query Tools &#8212; Polyfills</h3>
 
 *viewstat* is a frontend-only JavaScript library that provides various tools to interact with CSS media queries and the viewport.
 It's features include:
