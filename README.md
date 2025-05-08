@@ -74,7 +74,7 @@ const { name, supported } = getCompatInfo("requestAnimationFrame");
 
 # Documentation
 
-Documentation is available [here](https://solarunes.github.io/projects/viewstat).
+Documentation is available [here](https://solarunes.github.io/viewstat-docs).
 Alternatively, it can be built directly from source.
 
 

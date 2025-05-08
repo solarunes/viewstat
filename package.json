@@ -16,7 +16,7 @@
 		"matchmedia",
 		"requestanimationframe"
 	],
-	"homepage": "https://solarunes.github.io/projects/viewstat",
+	"homepage": "https://solarunes.github.io/viewstat-docs",
 	"bugs": {
 		"url": "https://github.com/solarunes/viewstat#issues"
 	},
